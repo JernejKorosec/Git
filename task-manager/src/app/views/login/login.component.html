@@ -1,2 +1,16 @@
-<h1>Login View</h1>
-<a [routerLink]="['/tasks']">Go Back to Tasks</a>
+<table>
+    <tr>
+        <td>Username</td>
+        <td><input type="text"> </td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td><input type="password"> </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="button" value="Reset" (click)="onReset()"/>
+            <input type="button" value="Login" (click)="onLogin()" />
+        </td>
+    </tr>
+</table>

@@ -23,7 +23,9 @@ export class UserService {
             //npm i @swimlane/ngx-datatable --save
             //npm install "https://github.com/shakacode/bootstrap-loader.git#branch-name" --save
             //https://github.com/Reboog711/ngx-datatable/tree/angular-13-take-3
-
+            // https://github.com/Reboog711/ngx-datatable#angular-13-take-3
+            
+            // Proper: npm install https://github.com/Reboog711/ngx-datatable#angular-13-take-3
 
             if (( username === 'me' ) && ( password === 'me' )) {
                 result.userID = 1;

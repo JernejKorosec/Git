@@ -11,17 +11,22 @@ import { UserService } from './services/mock/user.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { TaskGridComponent } from './views/task-grid/task-grid.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TasksComponent    // components that are NOT in its own module
+    TasksComponent,
+    TaskGridComponent    // components that are NOT in its own module
   ],
   imports: [
     BrowserModule,    // componenets in own module, own namespace!
     AppRoutingModule,  // componenets in own module, own namespace!
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxDatatableModule
   ],
   providers: [
     UserService

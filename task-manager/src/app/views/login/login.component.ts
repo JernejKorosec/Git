@@ -55,8 +55,11 @@ export class LoginComponent implements OnInit {
     this.userService.authenticate( this.username, this.password ).subscribe({
       next: (result: UserVO) => {
         // result code
+        console.log("login.component.ts this.userService.authenticate.next ");
         this.userModel.user = result;
+        console.log("this.userModel.user = result;");
         this.router.navigate(['/tasks']);
+        console.log("this.router.navigate(['/tasks']);;");
 
       },
       error: (error: HttpErrorResponse) => {
@@ -65,9 +68,6 @@ export class LoginComponent implements OnInit {
     }
   );
   
-  
-
-
     console.log('onLogin');
   }
   constructor(

@@ -12,6 +12,8 @@ export class UserService {
   // input username, password   output Observable<UserVO>
   authenticate(username : string, password : string) : Observable<UserVO> 
   { 
+    console.log('authenticate start');
+
     let o : Observable<UserVO> = new Observable( (observer : Observer<UserVO>) => 
       {
           setTimeout( () => {}, 1000 )
@@ -31,7 +33,9 @@ export class UserService {
                 result.userID = 1;
                 result.username = "me";
                 result.roleID = 1;
+                console.log('parsing if user = me and pass = me');
                 observer.next(result);
+                console.log('after the observer.next');
 
               } else if (( username === 'you' ) && ( password === 'you' )) 
                 {

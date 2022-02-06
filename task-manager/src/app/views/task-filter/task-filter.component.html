@@ -1,6 +1,105 @@
-<div class="wrapper">
-    <app-task-filter class="taskFilter"></app-task-filter>
-    <div class="mainScreenContainer">
-        <app-task-grid></app-task-grid>
+<div class="taskFilterWrapper">
+    <div class="alert alert-danger warningAlert taskFilterAlert" *ngIf="filterError">
+        <h2>{{filterError}}</h2>
     </div>
 </div>
+
+
+<table>
+    <tr>
+        <td></td>
+        <td>Created After</td>
+        <td>Created Before</td>
+        <td></td>
+        <td>Scheduled After</td>
+        <td>Scheduled Before</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group"> <input class="form-control" placeholder="yyyy-mm-dd" name="createdAfterDP"
+                            ngbDatepicker #createdAfterDP="ngbDatepicker" [(ngModel)]="startDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="createdAfterDP.toggle()"
+                                type="button">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </td>
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group"> <input class="form-control" placeholder="yyyy-mm-dd"
+                            name="createdBeforeDP" ngbDatepicker #createdBeforeDP="ngbDatepicker" [(ngModel)]="endDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)=" createdBeforeDP.toggle()"
+                                type="button">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </td>
+        <td></td>
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group"> <input class="form-control" placeholder="yyyy-mm-dd"
+                            name="scheduledAfterDP" ngbDatepicker #scheduledAfterDP="ngbDatepicker"
+                            [(ngModel)]="scheduledStartDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)=" scheduledAfterDP.toggle()"
+                                type="button">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </td>
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group"> <input class="form-control" placeholder="yyyy-mm-dd"
+                            name="scheduledBeforeDP" ngbDatepicker #scheduledBeforeDP="ngbDatepicker"
+                            [(ngModel)]="scheduledEndDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)=" scheduledBeforeDP.toggle()"
+                                type="button">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Completed</td>
+        <td>Category</td>
+    </tr>
+
+    <tr>
+        <td>
+            <select [(ngModel)]="completed">
+                <option *ngFor="let task of refDataModel.taskCompletedOptions" [value]="task.value">
+                    {{task.label}}
+                </option>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <select [(ngModel)]="taskFilter.taskCategoryID">
+                <option *ngFor="let category of taskCategories" [value]="category.taskCategoryID">
+                    {{category.taskCategory}}
+                </option>
+            </select>
+        </td>
+    </tr>
+
+</table>

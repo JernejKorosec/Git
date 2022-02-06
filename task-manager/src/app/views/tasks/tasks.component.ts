@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TasksComponent implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log("export class TasksComponent implements OnInit ");
   }
 
 }

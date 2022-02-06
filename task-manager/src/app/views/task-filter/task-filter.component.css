@@ -1,17 +1,20 @@
-.wrapper {
-    display: flex;   height: 100%;
-    flex-direction: column;
-    height: 100%;
-    flex-direction: column;
+.taskFilter {
+    width: 100%;
 }
 
-.taskFilter{
-    width:100%;
-}
-
-.mainScreenContainer{
-    flex : 1;
-    padding-top : 5px;
+.mainScreenContainer {
+    flex: 1;
+    padding-top: 5px;
     height: 100%;
     overflow: auto;
+}
+
+.taskFilterWrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.taskFilterAlert {
+    padding: .2rem 1.25rem;
 }

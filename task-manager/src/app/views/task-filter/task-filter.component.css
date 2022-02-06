@@ -1,14 +1,3 @@
-.taskFilter {
-    width: 100%;
-}
-
-.mainScreenContainer {
-    flex: 1;
-    padding-top: 5px;
-    height: 100%;
-    overflow: auto;
-}
-
 .taskFilterWrapper {
     display: flex;
     height: 100%;
@@ -17,4 +6,20 @@
 
 .taskFilterAlert {
     padding: .2rem 1.25rem;
+}
+
+.datePicker {
+    width: 175px;
+}
+
+.completedDropDown {
+    width: 150px;
+}
+
+.taskCategoryDropDown {
+    width: 150px;
+}
+
+.alignBottom {
+    vertical-align: bottom;
 }

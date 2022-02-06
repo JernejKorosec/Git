@@ -14,19 +14,24 @@ import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaskGridComponent } from './views/task-grid/task-grid.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TaskFilterComponent } from './views/task-filter/task-filter.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     TasksComponent,
-    TaskGridComponent    // components that are NOT in its own module
+    TaskGridComponent,
+    TaskFilterComponent    // components that are NOT in its own module
   ],
   imports: [
     BrowserModule,    // componenets in own module, own namespace!
     AppRoutingModule,  // componenets in own module, own namespace!
     HttpClientModule,
     FormsModule,
-    NgxDatatableModule
+    NgxDatatableModule, // Datagrid
+    NgbModule           // DatePicker
   ],
   providers: [
     UserService

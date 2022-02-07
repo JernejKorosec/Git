@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { User } from '../interface/user';
 import { environment } from 'src/environments/environment';
 import { Form } from '@angular/forms';
+import { Event } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -88,10 +89,36 @@ export class UserService {
   deleteUser(id: number): Observable < void > {
     return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
   }
-/*
-  uploadFiles(formData: FormData): Observable<HttpEvent<string[]>> {
-    return this.http.post<string[]>(`http//localhost:9000/file/upload`, formData, 
-    { observe: 'events', reportProgess: true });
+
+  
+  /*
+  uploadFiles(formData: FormData): Observable<ArrayBuffer> {
+    return this.http.post<string[]>(
+      `http//localhost:9000/file/upload`, 
+      formData, 
+      { observe: 'events', reportProgess: true }
+    );
   }
-*/
+  */
+  uploadFiles2(formData: FormData): Observable<HttpEvent<any>> {
+    return this.http.post<HttpEvent<any>>(
+      `http//localhost:9000/file/upload`, 
+      formData, 
+      {
+        reportProgress: true,
+        responseType: 'json'
+      });
+  }
+
+
+  uploadFiles(formData: FormData): Observable<HttpEvent<any>> { 
+    let baseUrl = `http//localhost:9000/file/upload`;
+    const req = new HttpRequest('POST', `${baseUrl}/upload`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+  
+
 }

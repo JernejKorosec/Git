@@ -131,27 +131,29 @@ export class AppComponent implements OnInit {
   }
 
 
-  onUploadFile(files: File[]): void {
-    console.log(files);
-    const formData = new FormData();
-    for (const file of files) {
-      formData.append('files', file, file.name);
-    }
-    this.userService.uploadFiles(formData).subscribe(
-      (event) => {
-        switch (event.type) {
-          case HttpEventType.UploadProgress || HttpEventType.DownloadProgress:
-            console.log(event);
-            break
-          case HttpEventType.Response:
-            console.log(event);
-            break
-        }
-      },
-      (error: any) => console.log(error),
-      () => console.log('Done uploading files')
-    );
-  }
 
+  //onUploadFile(files: File[]): void {
+    onUploadFile(files: any): void {
+    console.log(files);
+      const formData = new FormData();
+      for (const file of files) {
+        formData.append('files', file, file.name);
+      }
+      this.userService.uploadFiles2(formData).subscribe(
+        (event) => {
+          switch (event.type) {
+            case HttpEventType.UploadProgress || HttpEventType.DownloadProgress:
+              console.log(event);
+              break
+            case HttpEventType.Response:
+              console.log(event);
+              break
+          }
+        },
+        (error: any) => console.log(error),
+        () => console.log('Done uploading files')
+      );
+    
+  }
 
 }

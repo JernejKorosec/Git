@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { User } from '../interface/user';
 import { environment } from 'src/environments/environment';
+import { Form } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
   private apiUrl = environment.apiUrl;
+  readonly moreParams = ['test','test2'];
 
   /*
   getUsers(): Observable<User[]> {
@@ -18,10 +20,31 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  getUsers(): Observable <User[]> {
+    return this.http.get<User []>(`${this.apiUrl}/users`);
+  }
+  /*
+  getUsers(): Observable < HttpEvent<User[]>> {
+    return this.http.get<User []>(`${this.apiUrl}/users`, 
+    {observe: 'events', reportProgress:true });
+  }
+*/
+  /*
+  getUsers(): Observable < HttpEvent<User[]>> {
+    return this.http.get<User []>(`${this.apiUrl}/users`, {observe: 'events'});
+  }
+  */
+/*
   getUsers(): Observable < User[] > {
-    let myParams = new HttpParams().set('page','5').set('sort','true');
-    myParams = myParams.append('name','junior');
-    myParams = myParams.append('name','john');
+    const theParams = {['testList'] : this.moreParams};
+    //let myParams = new HttpParams({fromObject: theParams});
+    //let myParams = new HttpParams({fromObject: {['testList'] : this.moreParams}});
+    let myParams = new HttpParams({fromString: 'name=Junior&id=58' });
+    
+    // let myParams = new HttpParams().set('page','5').set('sort','true');
+    // myParams = myParams.append('name','junior');
+    // myParams = myParams.append('name','john');
+    
     return this.http.get<User []>(`${this.apiUrl}/users`, {params: myParams});
 
     //let myHeaders = new HttpHeaders({'myheader' : 'headerValue'});
@@ -30,7 +53,7 @@ export class UserService {
     //return this.http.get<User []>(`${this.apiUrl}/users`, {headers: myHeaders});
     //return this.http.get<User []>(`${this.apiUrl}/users`);
   }
-
+*/
   /*
   getUsers(): Observable < User[] > {
     let myHeaders = new HttpHeaders({'myheader' : 'headerValue'})
@@ -65,4 +88,10 @@ export class UserService {
   deleteUser(id: number): Observable < void > {
     return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
   }
+/*
+  uploadFiles(formData: FormData): Observable<HttpEvent<string[]>> {
+    return this.http.post<string[]>(`http//localhost:9000/file/upload`, formData, 
+    { observe: 'events', reportProgess: true });
+  }
+*/
 }

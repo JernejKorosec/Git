@@ -3,9 +3,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { User } from '../interface/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+
+  private apiUrl = environment.apiUrl;
 
   /*
   getUsers(): Observable<User[]> {
@@ -14,13 +17,13 @@ export class UserService {
 */
 
   constructor(private http: HttpClient) {}
-  
+
   getUsers(): Observable < User[] > {
-    return this.http.get<User []>('https://jsonplaceholder.typicode.com/users');
+    return this.http.get<User []>(this.apiUrl+'users');
   }
 
   getUser(): Observable < User > {
-    return this.http.get<User >('https://jsonplaceholder.typicode.com/users/1');
+    return this.http.get<User >(this.apiUrl+'users/1');
   }
 
   

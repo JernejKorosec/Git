@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, setTestabilityGetter } from '@angular/core';
+import { User } from './interface/user';
 //import { Observable } from 'rxjs';
 import { UserService } from './service/user.service';
 
@@ -11,6 +12,32 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent implements OnInit{
   title = 'angularhttp';
+  private user: User = {
+    
+      //'id': 1, // id of user is optional id?
+      'id': 5,  // needed for update user
+      'name': 'Junior Graham',
+      'username': 'junior',
+      'email': 'emailfromsomewhere@april.biz',
+      'address': {
+        'street': 'Kulas Light',
+        'suite': 'Apt. 556',
+        'city': 'Gwenborough',
+        'zipcode': '92998-3874',
+        'geo': {
+          'lat': '-37.3159',
+          'lng': '81.1496'
+        }
+      },
+      'phone': '1-770-736-8031 x56442',
+      'website': 'hildegard.org',
+      'company': {
+        'name': 'Get Arrays',
+        'catchPhrase': 'Multi-layered client-server neural-net',
+        'bs': 'harness real-time e-markets'
+      }
+    
+  }
 
   constructor(private userService: UserService) {
    //constructor() {
@@ -41,7 +68,9 @@ export class AppComponent implements OnInit{
     // })
   }
   ngOnInit(): void {
+    this.onUpdateUser();
     this.onGetUsers();
+    //this.onCreateUser();
   }
 
   onGetUsers() : void {
@@ -56,6 +85,24 @@ export class AppComponent implements OnInit{
     error: (e) => console.error(e),
     complete: () => console.info('complete') 
     */
+    );
+  }
+
+  onCreateUser() : void {
+    //this.userService.getUsers().subscribe( // deprecated
+    this.userService.createUser(this.user).subscribe( // deprecated
+      (response)  => console.log(response),
+      (error: any)  => console.log(error),
+      ()  => console.log('Done creating user')
+    );
+  }
+
+  onUpdateUser() : void {
+    //this.userService.getUsers().subscribe( // deprecated
+    this.userService.updateUser(this.user).subscribe( // deprecated
+      (response)  => console.log(response),
+      (error: any)  => console.log(error),
+      ()  => console.log('Done updating user')
     );
   }
 }

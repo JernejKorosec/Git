@@ -12,10 +12,19 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent implements OnInit{
   title = 'angularhttp';
+  private someUserData: any ={
+    'id': 2,  // needed forpatch
+    'name': 'Junior Graham',
+    'username': 'junior',
+    'email': 'emailfromsomewhere@april.biz'
+  }
+
+
   private user: User = {
     
       //'id': 1, // id of user is optional id?
-      'id': 5,  // needed for update user
+      //'id': 5,  // needed for update user
+      'id': 5,  // needed forpatch
       'name': 'Junior Graham',
       'username': 'junior',
       'email': 'emailfromsomewhere@april.biz',
@@ -68,10 +77,14 @@ export class AppComponent implements OnInit{
     // })
   }
   ngOnInit(): void {
-    this.onUpdateUser();
+    this.onDeleteUser();
+    this.onPatchUser();
+    //this.onUpdateUser();
     this.onGetUsers();
     //this.onCreateUser();
   }
+
+
 
   onGetUsers() : void {
     this.userService.getUsers().subscribe( // deprecated
@@ -105,5 +118,25 @@ export class AppComponent implements OnInit{
       ()  => console.log('Done updating user')
     );
   }
+
+  onPatchUser() : void {
+    //this.userService.getUsers().subscribe( // deprecated
+    //this.userService.updateUser(this.user).subscribe( // deprecated
+    this.userService.updateUser(this.someUserData).subscribe( // deprecated
+      (response)  => console.log(response),
+      (error: any)  => console.log(error),
+      ()  => console.log('Done patching user')
+    );
+  }
+
+  onDeleteUser() : void {
+    this.userService.deleteUser(5).subscribe( // deprecated
+      (response)  => console.log('Response from delete: ', response),
+      (error: any)  => console.log(error),
+      ()  => console.log('Done deleting user')
+    );
+  }
+
+
 }
 

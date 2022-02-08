@@ -1,8 +1,27 @@
- {
+{
     "*": {
         "target": "http://rdweb.spica.com:5213/timeapi",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
+    },
+    "/user": {
+        "target": "http://localhost:4200/user",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/presence": {
+        "target": "http://localhost:4200/presence",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/settings": {
+        "target": "http://localhost:4200/settings",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
     }
+
 }

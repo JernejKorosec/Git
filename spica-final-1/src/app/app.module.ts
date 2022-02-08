@@ -7,6 +7,8 @@ import{ HttpClientModule} from '@angular/common/http';
 import { SettingsComponent } from './views/settings/settings.component';
 import { UsersComponent } from './views/users/users.component';
 import { PresenceComponent } from './views/presence/presence.component';
+import { FormsModule }    from '@angular/forms';
+import { jqxGridModule } from 'jqwidgets-ng/jqxgrid';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,11 @@ import { PresenceComponent } from './views/presence/presence.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    jqxGridModule 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ AppComponent ]
 })
 export class AppModule { }

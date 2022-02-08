@@ -129,8 +129,6 @@ export class UserService {
     let spicaEndpoint1: string = "";
     //let fullUrl = spicaUrl + spicaEndpoint1;
     let fullUrl = spicaUrl;
-
-    let headerKey1 = 'Authorization';
     let headerValue1 = 'SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204';
 
     let bodyValue1: string = `
@@ -143,19 +141,46 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        /*'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Origin, x-Requested-With, Content-Type, Accept',*/
         'Authorization': headerValue1
       })
     };
-
-    let result = this.http.post<void>(fullUrl, bodyValue1, httpOptions);
+    //TokenTimeStamp: 2022-02-08T02:24:34.6026923+01:00
+    //let result = this.http.post<void>(fullUrl, bodyValue1, httpOptions);
+    let result = this.http.post<RequestCredentials>(fullUrl, bodyValue1, httpOptions);
     console.log(result);
     return result;
 
   }
 
+  requestSessionToken2(): Observable<any> {
 
+    //let spicaUrl: string = "http://rdweb.spica.com:5213/timeapi/Session/GetSession";
+    let spicaUrl: string = "/Session/GetSession";
+    let spicaEndpoint1: string = "";
+    //let fullUrl = spicaUrl + spicaEndpoint1;
+    let fullUrl = spicaUrl;
+    let headerValue1 = 'SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204';
+
+    let bodyValue1: string = `
+      {
+      "Username": "demo",
+      "Password": "demo",
+      "Sid": ""
+      }`;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': headerValue1
+      })
+    };
+    //TokenTimeStamp: 2022-02-08T02:24:34.6026923+01:00
+    //let result = this.http.post<void>(fullUrl, bodyValue1, httpOptions);
+    let result = this.http.post<RequestCredentials>(fullUrl, bodyValue1, httpOptions);
+    console.log(result);
+    return result;
+
+  }
 
 
 }

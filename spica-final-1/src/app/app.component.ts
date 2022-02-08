@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './services/employee.service';
 import { Globalconstants } from './common/global/globalconstants';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit {
     //this.onGetSession();
     //this.onGetEmployee();
     //this.testLocalStorage();
-    this.isSessionValid();
+    this.ReLogin();
   }
 
 /// ==============================================================================
@@ -34,7 +33,7 @@ export class AppComponent implements OnInit {
     return false;
   }
 
-  isSessionValid(){
+  ReLogin(){
     if (localStorage.getItem("SpicaApi_Session_Timestamp") === null)
     {
       console.log("if");
@@ -78,6 +77,7 @@ export class AppComponent implements OnInit {
     this.employeeService.getEmployees().subscribe(
       {
         next: (employeeList) => {
+          
           console.log(employeeList.toString());
           //console.log("Token je:" + response.Token);
         },
@@ -85,8 +85,5 @@ export class AppComponent implements OnInit {
         complete: () => console.info('complete'),
       }
     )
-
   }
-
-
 }

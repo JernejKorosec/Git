@@ -37,7 +37,10 @@ export class EmployeeService {
 
   getEmployees(): Observable<Employee[]> {
     let url: string = Globalconstants.spiceApiEndpoint_employee; // url host and port is in proxy
-    let FullSessionToken = Globalconstants.Auth_GetSession_Token + ":" + Globalconstants.Auth_InSession_Token;
+    //let FullSessionToken = Globalconstants.Auth_GetSession_Token + ":" + Globalconstants.Auth_InSession_Token;
+    
+    let FullSessionToken = Globalconstants.Auth_GetSession_Token + ":" + localStorage.getItem('SpicaApi_Session_Token');
+    
 
     console.log('Globalconstants.spiceApiEndpoint_employee ' + Globalconstants.Auth_GetSession_Token);
     console.log('Globalconstants.Auth_InSession_Token ' + Globalconstants.Auth_InSession_Token);

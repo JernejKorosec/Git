@@ -18,7 +18,8 @@ export class AppComponent implements OnInit {
     //this.onGetEmployee();
     //this.testLocalStorage();
     //this.ReLogin();
-    Globalconstants.ReLogin(() => this.onGetSession());
+   // Globalconstants.ReLogin(() => this.onGetSession());
+   this.onGetEmployee();
   }
   
   onGetSession() {
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
     this.employeeService.requestSessionToken().subscribe(
       {
         next: (response) => {
-          const jsonData = JSON.stringify(response.Token)
+          let jsonData = JSON.stringify(response.Token).slice(1, -1);
           localStorage.setItem('SpicaApi_Session_Token',jsonData);
           localStorage.setItem('SpicaApi_Session_Timestamp',new Date().toString());
         },
@@ -37,12 +38,11 @@ export class AppComponent implements OnInit {
   }
 
   onGetEmployee(): void {
+    Globalconstants.ReLogin(() => this.onGetSession()); // Neccesseary
     this.employeeService.getEmployees().subscribe(
       {
         next: (employeeList) => {
-          
-          //console.log(employeeList.toString());
-          //console.log("Token je:" + response.Token);
+          console.table(employeeList);
         },
         error: (e) => console.error('e'),
         complete: () => console.info('complete'),

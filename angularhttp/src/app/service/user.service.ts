@@ -6,6 +6,7 @@ import { User } from '../interface/user';
 import { environment } from 'src/environments/environment';
 import { Form } from '@angular/forms';
 import { Event } from '@angular/router';
+import { RequestCredential } from '../interface/requestcredentials';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -152,22 +153,17 @@ export class UserService {
 
   }
 
-  requestSessionToken2(): Observable<any> {
-
-    //let spicaUrl: string = "http://rdweb.spica.com:5213/timeapi/Session/GetSession";
+  requestSessionToken2(): Observable<RequestCredential> {
     let spicaUrl: string = "/Session/GetSession";
     let spicaEndpoint1: string = "";
-    //let fullUrl = spicaUrl + spicaEndpoint1;
     let fullUrl = spicaUrl;
     let headerValue1 = 'SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204';
-
     let bodyValue1: string = `
       {
       "Username": "demo",
       "Password": "demo",
       "Sid": ""
       }`;
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -175,11 +171,8 @@ export class UserService {
       })
     };
     //TokenTimeStamp: 2022-02-08T02:24:34.6026923+01:00
-    //let result = this.http.post<void>(fullUrl, bodyValue1, httpOptions);
-    let result = this.http.post<RequestCredentials>(fullUrl, bodyValue1, httpOptions);
-    console.log(result);
+    let result = this.http.post<RequestCredential>(fullUrl, bodyValue1, httpOptions);
     return result;
-
   }
 
 

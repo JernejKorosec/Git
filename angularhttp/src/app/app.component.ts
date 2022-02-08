@@ -1,5 +1,7 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, setTestabilityGetter } from '@angular/core';
+import { Observable, refCount } from 'rxjs';
+import { RequestCredential } from './interface/requestcredentials';
 import { User } from './interface/user';
 //import { Observable } from 'rxjs';
 import { UserService } from './service/user.service';
@@ -11,6 +13,8 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent implements OnInit {
   title = 'angularhttp';
+  testVar : RequestCredential = {};
+
   private someUserData: any = {
     'id': 2,  // needed forpatch
     'name': 'Junior Graham',
@@ -73,7 +77,10 @@ export class AppComponent implements OnInit {
     // })
   }
   ngOnInit(): void {
+    
     this.onGetSession();
+    
+    //console.log("Buahahaha, žetonček:" + this.testVar.Token);
 
     //this.onDeleteUser();
     //this.onPatchUser();
@@ -81,6 +88,26 @@ export class AppComponent implements OnInit {
     //this.onGetUsers();
     //this.onCreateUser();
   }
+
+  
+  //onGetSession(): Observable<RequestCredential> {
+    onGetSession(): void {
+    let v2 = this.userService.requestSessionToken2().subscribe( // deprecated
+      {
+        //next: (response) => this.testVar = response,
+        next: (response) => console.log("Token je:" + response.Token),
+        //next: (v) => v,
+        error: (e) => console.error('e'),
+        complete: () => console.info('complete') ,
+      }
+      
+      //console.log(v2);
+    );
+
+
+
+  }
+  /*
   onGetSession(): void {
     this.userService.requestSessionToken().subscribe( // deprecated
       (response) => console.log(response),
@@ -88,7 +115,7 @@ export class AppComponent implements OnInit {
       () => console.log('Done getting users')
     );
   }
-
+*/
 
   onGetUsers(): void {
     this.userService.getUsers().subscribe( // deprecated

@@ -124,9 +124,11 @@ export class UserService {
 
   requestSessionToken(): Observable<any> {
 
-    let spicaUrl: string = "http://rdweb.spica.com:5213/timeapi/Session/GetSession";
+    //let spicaUrl: string = "http://rdweb.spica.com:5213/timeapi/Session/GetSession";
+    let spicaUrl: string = "/Session/GetSession";
     let spicaEndpoint1: string = "";
-    let fullUrl = spicaUrl + spicaEndpoint1;
+    //let fullUrl = spicaUrl + spicaEndpoint1;
+    let fullUrl = spicaUrl;
 
     let headerKey1 = 'Authorization';
     let headerValue1 = 'SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204';
@@ -141,8 +143,8 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        //'Accept': 'application/json',
-        //'Access-Control-Allow-Origin': '*',
+        /*'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, x-Requested-With, Content-Type, Accept',*/
         'Authorization': headerValue1
       })
     };

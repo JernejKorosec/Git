@@ -12,8 +12,9 @@ import { UserService } from './service/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  public requestCredentials : RequestCredential = {};
   title = 'angularhttp';
-  testVar : RequestCredential = {};
+  
 
   private someUserData: any = {
     'id': 2,  // needed forpatch
@@ -95,7 +96,11 @@ export class AppComponent implements OnInit {
     let v2 = this.userService.requestSessionToken2().subscribe( // deprecated
       {
         //next: (response) => this.testVar = response,
-        next: (response) => console.log("Token je:" + response.Token),
+        next: (response) => 
+        {
+          this.requestCredentials = response;
+          console.log("Token je:" + response.Token)
+        },
         //next: (v) => v,
         error: (e) => console.error('e'),
         complete: () => console.info('complete') ,

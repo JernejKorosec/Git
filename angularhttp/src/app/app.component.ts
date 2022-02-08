@@ -16,7 +16,12 @@ import { UserService } from './service/user.service';
 
 export class AppComponent implements OnInit {
 
-  public requestCredentials: RequestCredential = {};
+  public requestCredentials: RequestCredential = new RequestCredential();
+  
+  public setAuthorizationToken(value?:string){
+    this.requestCredentials.Token = value;
+  }
+  
   title = 'angularhttp';
 
 
@@ -82,9 +87,9 @@ export class AppComponent implements OnInit {
     // })
   }
   ngOnInit(): void {
-
+    
     this.onGetSession();
-
+    this.onGetEmployee();
     //console.log("Buahahaha, žetonček:" + this.testVar.Token);
 
     //this.onDeleteUser();
@@ -102,7 +107,9 @@ export class AppComponent implements OnInit {
         //next: (response) => this.testVar = response,
         next: (response) => {
           this.requestCredentials = response;
-          console.log("Token je:" + response.Token)
+          this.setAuthorizationToken(response.Token);
+          console.log("Token je:" + response.Token);
+          console.log("Shranjen lokalno, Token je:" + this.requestCredentials.Token);
         },
         //next: (v) => v,
         error: (e) => console.error('e'),
@@ -110,7 +117,7 @@ export class AppComponent implements OnInit {
       }
       //console.log(v2);
     );
-
+/*
     let v3 = this.userService.requestSessionToken3(this.requestCredentials).subscribe(
       {
         next: (response) => {
@@ -121,8 +128,23 @@ export class AppComponent implements OnInit {
         complete: () => console.info('complete'),
       }
     )
-
+*/
   }
+
+  //Employee[]
+  onGetEmployee():void{
+    console.log("onGetEmployee():void" + this.requestCredentials);
+    console.log("onGetEmployee():void => " + this.requestCredentials.Token);
+    let users = this.userService.getEmployee(this.requestCredentials.Token).subscribe({
+        next: (response) => {
+          console.table(response);
+        },
+        error: (e) => console.error('e'),
+        complete: () => console.info('complete'),
+    })
+  }
+
+
   /*
   onGetSession(): void {
     this.userService.requestSessionToken().subscribe( // deprecated

@@ -1,4 +1,4 @@
-export interface RequestCredential {
+export class RequestCredential {
     TokenTimeStamp?: string;
     Token?: string;
     UserId?: number;

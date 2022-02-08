@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Form } from '@angular/forms';
 import { Event } from '@angular/router';
 import { RequestCredential } from '../interface/requestcredentials';
+import { Employee } from '../interface/employee';
 
 
 
@@ -201,5 +202,24 @@ export class UserService {
     return result;
   }
 
+  getEmployee(token?:string) : Observable<Employee[]>{
+    //http://rdweb.spica.com:5213/timeapi/employee
+
+    
+    console.log(token);
+
+    let spicaUrl: string = "/employee";
+    let headerValue1: string  = 'SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204:'+token;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': headerValue1
+      })
+    };
+    //return this.http.get<Employee[]>(spicaUrl,null,httpOptions);
+    //return this.http.get<Employee[]>(spicaUrl,null,httpOptions);
+    return this.http.get<Employee[]>(spicaUrl,httpOptions);
+  }
+  
 
 }

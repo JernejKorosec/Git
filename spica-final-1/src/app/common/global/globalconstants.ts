@@ -10,4 +10,10 @@ export class Globalconstants {
     public static spiceApiEndpoint_employee : string = "/Employee";
     public static spiceApiEndpoint_presence : string = "/presence";
 
+
+
+
+
+
+    
 }

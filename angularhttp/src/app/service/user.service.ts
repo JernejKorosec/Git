@@ -11,7 +11,7 @@ import { Event } from '@angular/router';
 export class UserService {
 
   private apiUrl = environment.apiUrl;
-  readonly moreParams = ['test','test2'];
+  readonly moreParams = ['test', 'test2'];
 
   /*
   getUsers(): Observable<User[]> {
@@ -19,10 +19,10 @@ export class UserService {
   }
 */
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getUsers(): Observable <User[]> {
-    return this.http.get<User []>(`${this.apiUrl}/users`);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
   /*
   getUsers(): Observable < HttpEvent<User[]>> {
@@ -35,26 +35,26 @@ export class UserService {
     return this.http.get<User []>(`${this.apiUrl}/users`, {observe: 'events'});
   }
   */
-/*
-  getUsers(): Observable < User[] > {
-    const theParams = {['testList'] : this.moreParams};
-    //let myParams = new HttpParams({fromObject: theParams});
-    //let myParams = new HttpParams({fromObject: {['testList'] : this.moreParams}});
-    let myParams = new HttpParams({fromString: 'name=Junior&id=58' });
-    
-    // let myParams = new HttpParams().set('page','5').set('sort','true');
-    // myParams = myParams.append('name','junior');
-    // myParams = myParams.append('name','john');
-    
-    return this.http.get<User []>(`${this.apiUrl}/users`, {params: myParams});
-
-    //let myHeaders = new HttpHeaders({'myheader' : 'headerValue'});
-    //myHeaders = myHeaders.append('','');
-    //myHeaders = myHeaders.set('id','1234');
-    //return this.http.get<User []>(`${this.apiUrl}/users`, {headers: myHeaders});
-    //return this.http.get<User []>(`${this.apiUrl}/users`);
-  }
-*/
+  /*
+    getUsers(): Observable < User[] > {
+      const theParams = {['testList'] : this.moreParams};
+      //let myParams = new HttpParams({fromObject: theParams});
+      //let myParams = new HttpParams({fromObject: {['testList'] : this.moreParams}});
+      let myParams = new HttpParams({fromString: 'name=Junior&id=58' });
+      
+      // let myParams = new HttpParams().set('page','5').set('sort','true');
+      // myParams = myParams.append('name','junior');
+      // myParams = myParams.append('name','john');
+      
+      return this.http.get<User []>(`${this.apiUrl}/users`, {params: myParams});
+  
+      //let myHeaders = new HttpHeaders({'myheader' : 'headerValue'});
+      //myHeaders = myHeaders.append('','');
+      //myHeaders = myHeaders.set('id','1234');
+      //return this.http.get<User []>(`${this.apiUrl}/users`, {headers: myHeaders});
+      //return this.http.get<User []>(`${this.apiUrl}/users`);
+    }
+  */
   /*
   getUsers(): Observable < User[] > {
     let myHeaders = new HttpHeaders({'myheader' : 'headerValue'})
@@ -70,27 +70,27 @@ export class UserService {
   }
   */
 
-  getUser(): Observable < User > {
-    return this.http.get<User >(`${this.apiUrl}/users/1`);
+  getUser(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/1`);
   }
   // http://jsonplaceholder.typicode.com
-  createUser(user: User): Observable < User > {
-    return this.http.post<User>(`${this.apiUrl}/users`,user);
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}/users`, user);
   }
 
-  updateUser(user: User): Observable < User > {
-    return this.http.put<User>(`${this.apiUrl}/users/${user.id}`,user);
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/users/${user.id}`, user);
   }
 
-  patchUser(user: User): Observable < User > {
-    return this.http.patch<User>(`${this.apiUrl}/users/${user.id}`,user);
+  patchUser(user: User): Observable<User> {
+    return this.http.patch<User>(`${this.apiUrl}/users/${user.id}`, user);
   }
 
-  deleteUser(id: number): Observable < void > {
+  deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
   }
 
-  
+
   /*
   uploadFiles(formData: FormData): Observable<ArrayBuffer> {
     return this.http.post<string[]>(
@@ -102,8 +102,8 @@ export class UserService {
   */
   uploadFiles2(formData: FormData): Observable<HttpEvent<any>> {
     return this.http.post<HttpEvent<any>>(
-      `http//localhost:9000/file/upload`, 
-      formData, 
+      `http//localhost:9000/file/upload`,
+      formData,
       {
         reportProgress: true,
         responseType: 'json'
@@ -111,7 +111,7 @@ export class UserService {
   }
 
 
-  uploadFiles(formData: FormData): Observable<HttpEvent<any>> { 
+  uploadFiles(formData: FormData): Observable<HttpEvent<any>> {
     let baseUrl = `http//localhost:9000/file/upload`;
     const req = new HttpRequest('POST', `${baseUrl}/upload`, formData, {
       reportProgress: true,
@@ -119,6 +119,41 @@ export class UserService {
     });
     return this.http.request(req);
   }
-  
+
+  // Spica testiranje   
+
+  requestSessionToken(): Observable<any> {
+
+    let spicaUrl: string = "http://rdweb.spica.com:5213/timeapi/Session/GetSession";
+    let spicaEndpoint1: string = "";
+    let fullUrl = spicaUrl + spicaEndpoint1;
+
+    let headerKey1 = 'Authorization';
+    let headerValue1 = 'SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204';
+
+    let bodyValue1: string = `
+      {
+      "Username": "demo",
+      "Password": "demo",
+      "Sid": ""
+      }`;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        //'Accept': 'application/json',
+        //'Access-Control-Allow-Origin': '*',
+        'Authorization': headerValue1
+      })
+    };
+
+    let result = this.http.post<void>(fullUrl, bodyValue1, httpOptions);
+    console.log(result);
+    return result;
+
+  }
+
+
+
 
 }

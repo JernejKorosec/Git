@@ -73,12 +73,22 @@ export class AppComponent implements OnInit {
     // })
   }
   ngOnInit(): void {
+    this.onGetSession();
+
     //this.onDeleteUser();
     //this.onPatchUser();
     //this.onUpdateUser();
-    this.onGetUsers();
+    //this.onGetUsers();
     //this.onCreateUser();
   }
+  onGetSession(): void {
+    this.userService.requestSessionToken().subscribe( // deprecated
+      (response) => console.log(response),
+      (error: any) => console.log(error),
+      () => console.log('Done getting users')
+    );
+  }
+
 
   onGetUsers(): void {
     this.userService.getUsers().subscribe( // deprecated

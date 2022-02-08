@@ -3,7 +3,6 @@ import { Component, OnInit, setTestabilityGetter } from '@angular/core';
 import { Observable, refCount } from 'rxjs';
 import { RequestCredential } from './interface/requestcredentials';
 import { User } from './interface/user';
-//import { Observable } from 'rxjs';
 import { UserService } from './service/user.service';
 
 @Component({
@@ -11,10 +10,15 @@ import { UserService } from './service/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
+
+
 export class AppComponent implements OnInit {
-  public requestCredentials : RequestCredential = {};
+
+  public requestCredentials: RequestCredential = {};
   title = 'angularhttp';
-  
+
 
   private someUserData: any = {
     'id': 2,  // needed forpatch
@@ -78,9 +82,9 @@ export class AppComponent implements OnInit {
     // })
   }
   ngOnInit(): void {
-    
+
     this.onGetSession();
-    
+
     //console.log("Buahahaha, žetonček:" + this.testVar.Token);
 
     //this.onDeleteUser();
@@ -90,26 +94,33 @@ export class AppComponent implements OnInit {
     //this.onCreateUser();
   }
 
-  
+
   //onGetSession(): Observable<RequestCredential> {
-    onGetSession(): void {
+  onGetSession(): void {
     let v2 = this.userService.requestSessionToken2().subscribe( // deprecated
       {
         //next: (response) => this.testVar = response,
-        next: (response) => 
-        {
+        next: (response) => {
           this.requestCredentials = response;
           console.log("Token je:" + response.Token)
         },
         //next: (v) => v,
         error: (e) => console.error('e'),
-        complete: () => console.info('complete') ,
+        complete: () => console.info('complete'),
       }
-      
       //console.log(v2);
     );
 
-
+    let v3 = this.userService.requestSessionToken3(this.requestCredentials).subscribe(
+      {
+        next: (response) => {
+          console.log("Token je:" + response.Token);
+        },
+        //next: (v) => v,
+        error: (e) => console.error('e'),
+        complete: () => console.info('complete'),
+      }
+    )
 
   }
   /*
@@ -171,31 +182,27 @@ export class AppComponent implements OnInit {
       () => console.log('Done deleting user')
     );
   }
-
-
-
   //onUploadFile(files: File[]): void {
-    onUploadFile(files: any): void {
+  onUploadFile(files: any): void {
     console.log(files);
-      const formData = new FormData();
-      for (const file of files) {
-        formData.append('files', file, file.name);
-      }
-      this.userService.uploadFiles2(formData).subscribe(
-        (event) => {
-          switch (event.type) {
-            case HttpEventType.UploadProgress || HttpEventType.DownloadProgress:
-              console.log(event);
-              break
-            case HttpEventType.Response:
-              console.log(event);
-              break
-          }
-        },
-        (error: any) => console.log(error),
-        () => console.log('Done uploading files')
-      );
-    
-  }
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append('files', file, file.name);
+    }
+    this.userService.uploadFiles2(formData).subscribe(
+      (event) => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress || HttpEventType.DownloadProgress:
+            console.log(event);
+            break
+          case HttpEventType.Response:
+            console.log(event);
+            break
+        }
+      },
+      (error: any) => console.log(error),
+      () => console.log('Done uploading files')
+    );
 
+  }
 }

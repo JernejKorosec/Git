@@ -8,12 +8,21 @@ import { Form } from '@angular/forms';
 import { Event } from '@angular/router';
 import { RequestCredential } from '../interface/requestcredentials';
 
+
+
+
 @Injectable({ providedIn: 'root' })
 export class UserService {
+
+
+
 
   private apiUrl = environment.apiUrl;
   readonly moreParams = ['test', 'test2'];
 
+  
+  
+  
   /*
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>('http://api.com/users');
@@ -172,6 +181,23 @@ export class UserService {
     };
     //TokenTimeStamp: 2022-02-08T02:24:34.6026923+01:00
     let result = this.http.post<RequestCredential>(fullUrl, bodyValue1, httpOptions);
+    return result;
+  }
+
+  requestSessionToken3(requestCredential007: RequestCredential): Observable<RequestCredential> {
+    let spicaUrl: string = "/Session/GetSession";
+    let fullUrl = spicaUrl;
+    let headerValue1 = 'SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204';
+    let headerValue2 = headerValue1+':'+requestCredential007.Username;
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': headerValue2
+      })
+    };
+    //TokenTimeStamp: 2022-02-08T02:24:34.6026923+01:00
+    let result = this.http.post<RequestCredential>(fullUrl, null, httpOptions);
     return result;
   }
 

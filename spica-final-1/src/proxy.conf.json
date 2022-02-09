@@ -1,5 +1,17 @@
 {
-    "*": {
+    "/Session*": {
+        "target": "http://rdweb.spica.com:5213/timeapi",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/Employee*": {
+        "target": "http://rdweb.spica.com:5213/timeapi",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/Presence*": {
         "target": "http://rdweb.spica.com:5213/timeapi",
         "secure": false,
         "changeOrigin": true,

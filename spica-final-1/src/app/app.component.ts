@@ -94,38 +94,12 @@ export class AppComponent implements OnInit {
     //this.onGetSession();
     this.onGetEmployee();
     //console.log(t);
-    
     //this.testLocalStorage();
     //this.ReLogin();
     // Globalconstants.ReLogin(() => this.onGetSession());
     //this.source.localdata = this.onGetEmployee();
     //this.dataAdapter = new jqx.dataAdapter(this.source);
   }
-
-
-  //somefunction(employeeArr:Employee[]):any {
-    somefunction(employeeArr:Employee[]):any {
-    //console.log("========================");
-    //console.log("somefunction");
-    //console.log(employeeArr[0]);
-    //var estring='';
-    /*
-    employeeArr.forEach( 
-      (employee) => { 
-
-        var e = new Employee();
-        e.Id= employee.Id;
-        e.FirstName = employee.FirstName;
-        estring += JSON.stringify(e);
-      }
-    );*/
-    let temp = JSON.stringify(employeeArr.map(({Id,FirstName})=>({Id,FirstName})));
-    //console.log(temp);
-    //console.log(estring);
-    //console.log("========================");
-    //return estring;
-  }
-  
 
   onGetSession() {
     console.log("onGetSession(): void");
@@ -141,53 +115,21 @@ export class AppComponent implements OnInit {
       }
     );
   }
-  //onGetEmployee(): void { // IEmployee[] {
+  
   onGetEmployee(): Employee[] {
-
-    //let source:any = [];
-
-    Globalconstants.ReLogin(() => this.onGetSession()); // Neccesseary
-
+    Globalconstants.ReLogin(() => this.onGetSession()); 
     let result: Employee[] = [];
-
     this.employeeService.getEmployees().subscribe(
       {
         next: (employeeList) => {
           result = employeeList;
-          //const sel: Object[] = employeeList.map(employee =>  ({Id: employee.Id, Firstname: employee.FirstName })); // no error
-
-          
-          
-          //debugger
-          /*
-          let source1 =
-          {
-              localdata: [
-                  [1, 'Maria Anders'],
-                  [2, 'Mxico D.F.'],
-                  [3,'Antonio Moreno Taquera']
-              ],
-          };
-        
-          let bbb = source1.localdata;
-          
-          console.log(`bbb is typeof: ${typeof bbb}, and value is:`,bbb);
-          */
-          //this.source.localdata = bbb;
           this.source.localdata = employeeList.map(employee => [employee.Id, employee.FirstName, employee.LastName, employee.Email, employee.AdditionalField1, employee.Active]);
-          
           this.dataAdapter = new jqx.dataAdapter(this.source);
-          
         },
         error: (e) => console.error('e'),
         complete: () => console.info('complete'),
       }
     )
-  
     return result;
-
   }
-
-
-
 }

@@ -359,9 +359,14 @@
          [selectionmode]="'multiplecellsadvanced'" [columngroups]="columngroups">
 </jqxGrid>
 -->
-<jqxGrid #myGrid 
-            [width]="850" [source]="dataAdapter" [columns]="columns">
+<jqxGrid #myGrid [width]="1050" [source]="dataAdapter" [columns]="columns" [sortable]="true"> </jqxGrid>
+
+<!--
+<jqxGrid #myGrid [theme]="'material'" [width]="'100%'" [source]="dataAdapter"
+         [autoheight]="true" [columns]="columns" [sortable]="true"
+         [filterable]="true" [autoshowfiltericon]="true" [ready]="ready">
 </jqxGrid>
+-->
 
  </div>
 

@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { MatSelect } from '@angular/material/select'
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatSelect } from '@angular/material/select'
     jqxGridModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

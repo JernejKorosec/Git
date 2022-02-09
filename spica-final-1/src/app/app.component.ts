@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   source: any =
     {
       localdata: [],
-      datafields:
+      datafields: //new Employee,
       
         [
           { name: 'id', type: 'number', map: '0' },
@@ -67,16 +67,18 @@ export class AppComponent implements OnInit {
 
   dataAdapter: any = new jqx.dataAdapter(this.source);
 
-  columns: any[] =
+
+  columns: any[] = [{}];
+  /*
     [
-      { text: 'ID', datafield: 'id', width: 200 },
+      { text: 'ID', datafield: 'id', width: 20 },
       { text: 'Ime', datafield: 'FirstName', width: 150 },
       { text: 'Priimek', datafield: 'LastName', width: 100 },
       { text: 'Email', datafield: 'Email', width: 100 },
       { text: 'Matična', datafield: 'AdditionalField1', width: 100 },
       { text: 'Active', datafield: 'Active' }
     ];
-
+*/
 
 
   constructor(private employeeService: EmployeeService) { }
@@ -106,6 +108,11 @@ export class AppComponent implements OnInit {
     );
   }
 
+
+  
+  
+
+
   //onGetEmployee(): void { // IEmployee[] {
   onGetEmployee(): Employee[] {
 
@@ -119,20 +126,68 @@ export class AppComponent implements OnInit {
         next: (employeeList) => {
           //console.table(employeeList);
           result = employeeList;
-          this.source.localdata = employeeList;
-          console.log("----------------------------");
-          //console.log(this.source.localdata);
-          console.count(this.source.localdata);
-          
-          console.log("----------------------------");
+          //result = employeeList.pop();
+          this.source.localdata = result;
 
+          console.log(Object.getOwnPropertyNames(result[0]));
+          let defs = Object.getOwnPropertyNames(result[0]);
+          
+          //this.columns
+          console.log(this.columns.keys.name);
+
+
+          //console.log("---   {",result[0].Email,"}   ---");
+
+          //Object.getOwnPropertyNames(result[0])
+
+          let neki = result[0].Email;
+          console.log("---   {",neki,"}   ---");    // email
+
+          
+          //  this.source.localdata = neki;
+
+
+          //this.dataAdapter = employeeList;
+          //console.log("----------------------------");
+          /*
+          //console.log(this.source.localdata);
+          let testsource1 = this.source.localdata;
+          let object1 = JSON.stringify(testsource1, null, 4);
+          let object1String = testsource1[0];
+          let object2String = JSON.stringify(object1String, null, 4);
+
+
+          //console.count(Object.keys(this.source.localdata));
+          console.log(object1String);
+          console.log(object2String);
+          */
+         //console.log(this.source.datafield);
+          //console.log("----------------------------");
+
+          //this.source.localdata = object1;
           this.dataAdapter = new jqx.dataAdapter(this.source);
+          //this.dataAdapter = new jqx.dataAdapter(object2String);
         },
         error: (e) => console.error('e'),
         complete: () => console.info('complete'),
       }
     )
-
+    /*
+    var data1 = [{ "empName": "test", "age": "67", "department": { "id": "1234", "name": "Sales" }, "author": "ravi"}];
+    var source1 =
+    {
+        datatype: "json",
+        datafields: [
+            { name: 'empName' },
+            { name: 'age' },
+            { name: 'id', map: 'department&gt;id' },
+            { name: 'name', map: 'department&gt;name' },
+            { name: 'author' }
+        ],
+        localdata: data1
+    };
+    this.dataAdapter = new jqx.dataAdapter(source1);
+    */
     return result;
 
   }

@@ -19,12 +19,11 @@ export class AppComponent implements OnInit {
   source: any =
     {
       localdata: [],
-      datafields: //new Employee,
-      
+      datafields:  
         [
-          { name: 'id', type: 'number', map: '0' },
+          { name: 'Id', type: 'number', map: '0' },
           { name: 'LastName', type: 'string', map: '1' },
-          { name: 'FirstName', type: 'string', map: '2' },
+         /* { name: 'FirstName', type: 'string', map: '2' },
           { name: 'MiddleName', type: 'string', map: '3' },
           { name: 'City', type: 'string', map: '4' },
           { name: 'Phone', type: 'string', map: '5' },
@@ -58,27 +57,27 @@ export class AppComponent implements OnInit {
           { name: 'InternalField3', type: 'object', map: '24' },
           { name: 'InternalField4', type: 'object', map: '25' },
           { name: 'InternalField5', type: 'boolean', map: '26' },
-          { name: 'CurrentWorkingSchemeId', type: 'number', map: '27' }
+          { name: 'CurrentWorkingSchemeId', type: 'number', map: '27' }*/
         ],
-     
-
       datatype: 'array'
     };
 
   dataAdapter: any = new jqx.dataAdapter(this.source);
 
 
-  columns: any[] = [{}];
-  /*
+  columns: any[] = 
+  
     [
-      { text: 'ID', datafield: 'id', width: 20 },
-      { text: 'Ime', datafield: 'FirstName', width: 150 },
+      { text: 'ID', datafield: 'Id', width: 100 },
       { text: 'Priimek', datafield: 'LastName', width: 100 },
+      /*
+      { text: 'Ime', datafield: 'FirstName', width: 150 },
       { text: 'Email', datafield: 'Email', width: 100 },
       { text: 'Matična', datafield: 'AdditionalField1', width: 100 },
       { text: 'Active', datafield: 'Active' }
+      */
     ];
-*/
+
 
 
   constructor(private employeeService: EmployeeService) { }
@@ -86,12 +85,39 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     //this.onGetSession();
     this.onGetEmployee();
+    //console.log(t);
+    
     //this.testLocalStorage();
     //this.ReLogin();
     // Globalconstants.ReLogin(() => this.onGetSession());
     //this.source.localdata = this.onGetEmployee();
     //this.dataAdapter = new jqx.dataAdapter(this.source);
   }
+
+
+  //somefunction(employeeArr:Employee[]):any {
+    somefunction(employeeArr:Employee[]):any {
+    //console.log("========================");
+    //console.log("somefunction");
+    //console.log(employeeArr[0]);
+    //var estring='';
+    /*
+    employeeArr.forEach( 
+      (employee) => { 
+
+        var e = new Employee();
+        e.Id= employee.Id;
+        e.FirstName = employee.FirstName;
+        estring += JSON.stringify(e);
+      }
+    );*/
+    let temp = JSON.stringify(employeeArr.map(({Id,FirstName})=>({Id,FirstName})));
+    //console.log(temp);
+    //console.log(estring);
+    //console.log("========================");
+    //return estring;
+  }
+  
 
   onGetSession() {
     console.log("onGetSession(): void");
@@ -107,12 +133,6 @@ export class AppComponent implements OnInit {
       }
     );
   }
-
-
-  
-  
-
-
   //onGetEmployee(): void { // IEmployee[] {
   onGetEmployee(): Employee[] {
 
@@ -121,27 +141,60 @@ export class AppComponent implements OnInit {
     Globalconstants.ReLogin(() => this.onGetSession()); // Neccesseary
 
     let result: Employee[] = [];
+
     this.employeeService.getEmployees().subscribe(
       {
         next: (employeeList) => {
-          //console.table(employeeList);
-          result = employeeList;
-          //result = employeeList.pop();
-          this.source.localdata = result;
 
-          console.log(Object.getOwnPropertyNames(result[0]));
-          let defs = Object.getOwnPropertyNames(result[0]);
+          //console.table(employeeList[0]);
+          result = employeeList;
+          //this.source.localdata = result;
+          
+          let a = this.somefunction(employeeList);
+          //debugger
+          //this.source.localdata = a;
+          let source1 =
+          {
+              localdata: [
+                  [1, 'Maria Anders'],
+                  [2, 'Mxico D.F.'],
+                  [3,'Antonio Moreno Taquera']
+              ],
+          };
+          let a1 = source1;
+          let a2 = source1.localdata;
+          let a3 = source1.localdata[0];
+          let a4 = source1.localdata[0][0];
+
+          console.log(`Type of source1 ${a1}:`, typeof a1);
+          console.log(`Type of source1.localdata ${a2}:`, typeof a2);
+          console.log(`Type of source1.localdata[0] ${a3}:`, typeof a3);
+          console.log(`Type of source1.localdata[0][0] ${a4}:`, typeof a4);
+          
+          console.log("TYPEOF---> :", typeof source1.localdata[0][0]);
+
+          //this.source.localdata = result;
+          this.source.localdata = source1.localdata;
+
+
+
+          //let watch1 = result;
+          //let watch2 = this.somefunction(employeeList);
+          //debugger;
+
+          //console.log(Object.getOwnPropertyNames(result[0]));
+          //let defs = Object.getOwnPropertyNames(result[0]);
           
           //this.columns
-          console.log(this.columns.keys.name);
+          //console.log(this.columns.keys.name);
 
 
           //console.log("---   {",result[0].Email,"}   ---");
 
           //Object.getOwnPropertyNames(result[0])
 
-          let neki = result[0].Email;
-          console.log("---   {",neki,"}   ---");    // email
+          //let neki = result[0].Email;
+          //console.log("---   {",neki,"}   ---");    // email
 
           
           //  this.source.localdata = neki;
@@ -172,22 +225,7 @@ export class AppComponent implements OnInit {
         complete: () => console.info('complete'),
       }
     )
-    /*
-    var data1 = [{ "empName": "test", "age": "67", "department": { "id": "1234", "name": "Sales" }, "author": "ravi"}];
-    var source1 =
-    {
-        datatype: "json",
-        datafields: [
-            { name: 'empName' },
-            { name: 'age' },
-            { name: 'id', map: 'department&gt;id' },
-            { name: 'name', map: 'department&gt;name' },
-            { name: 'author' }
-        ],
-        localdata: data1
-    };
-    this.dataAdapter = new jqx.dataAdapter(source1);
-    */
+  
     return result;
 
   }

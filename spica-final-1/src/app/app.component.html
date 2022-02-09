@@ -298,13 +298,12 @@
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: white;
     border-radius: 5px;
-
-    .example-container .mat-form-field + .mat-form-field {
-      margin-left: 8px;
-    }
-
-
   }
+
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
 </style>
 
 <!-- Toolbar -->
@@ -373,10 +372,10 @@
 
   <br />
 
-  <jqxGrid #myGrid [width]="804" [source]="dataAdapter" [columns]="columns" [sortable]="true" [filterable]="true"
+  <jqxGrid #myGrid [width]="830" [source]="dataAdapter" [columns]="columns" [sortable]="true" [filterable]="true"
     [autoshowfiltericon]="true" [pageable]="true"> </jqxGrid>
 
-  <div class="example-container" style="background-color:#888; width:804px;">
+  <div class="example-container" style="background-color:#888;">
 
     <p>
       <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
@@ -403,7 +402,7 @@
         <mat-hint align="end">{{input_maticna.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
     <p>
-      <button mat-stroked-button color="primary">Dodaj novega zaposlenega</button>
+      <button mat-stroked-button color="primary" #button_poslji>Dodaj novega zaposlenega</button>
     </p>
   </div>
 

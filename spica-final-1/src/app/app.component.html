@@ -298,6 +298,12 @@
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: white;
     border-radius: 5px;
+
+    .example-container .mat-form-field + .mat-form-field {
+      margin-left: 8px;
+    }
+
+
   }
 </style>
 
@@ -375,26 +381,26 @@
     <p>
       <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
         <mat-label>Vnesite Ime</mat-label>
-        <input matInput #input maxlength="10" placeholder="Npr. Jernej valda">
-        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+        <input matInput #input_ime maxlength="10" placeholder="Npr. Jernej valda">
+        <mat-hint align="end">{{input_ime.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
 
       <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
         <mat-label>Vnesite Priimek</mat-label>
-        <input matInput #input maxlength="10" placeholder="Npr. Korošec">
-        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+        <input matInput #input_priimek maxlength="10" placeholder="Npr. Korošec">
+        <mat-hint align="end">{{input_priimek.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
 
       <mat-form-field hintLabel="Max 50 znakov" appearance="fill">
         <mat-label>Vnesite Email</mat-label>
-        <input matInput #input maxlength="50" placeholder="Npr. Jernej.Korosec@lejtojeiziResIzi.si">
-        <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+        <input matInput #input_email maxlength="50" placeholder="Npr. Jernej.Korosec@lejtojeiziResIzi.si">
+        <mat-hint align="end">{{input_email.value?.length || 0}}/50</mat-hint>
       </mat-form-field>
 
       <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
         <mat-label>Vnesite Matično</mat-label>
-        <input matInput #input maxlength="10" placeholder="Npr. SI66609990">
-        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+        <input matInput #input_maticna maxlength="10" placeholder="Npr. SI66609990">
+        <mat-hint align="end">{{input_maticna.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
     <p>
       <button mat-stroked-button color="primary">Dodaj novega zaposlenega</button>

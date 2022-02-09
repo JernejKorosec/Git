@@ -15,207 +15,80 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'Spica TimeAPI';
-  e:Employee[] = [];
-
-  source: any =
-  {
-    /*
-      localdata: [
-          ['Alfreds Futterkiste', 'Maria Anders', 'Sales Representative', 'Obere Str. 57', 'Berlin', 'Germany'],
-          ['Ana Trujillo Emparedados y helados', 'Ana Trujillo', 'Owner', 'Avda. de la Constitucin 2222', 'Mxico D.F.', 'Mexico'],
-          ['Antonio Moreno Taquera', 'Antonio Moreno', 'Owner', 'Mataderos 2312', 'Mxico D.F.', 'Mexico']
-     ],
-     */
-     localdata: this.e,
-      datafields:
-      /* [
-          { name: 'CompanyName', type: 'string', map: '0' },
-          { name: 'ContactName', type: 'string', map: '1' },
-          { name: 'Title', type: 'string', map: '2' },
-          { name: 'Address', type: 'string', map: '3' },
-          { name: 'City', type: 'string', map: '4' },
-          { name: 'Country', type: 'string', map: '5' }
-      ],
-      */
-     [
-      { name: 'id', type: 'number', map: '0' },
-      { name: 'LastName', type: 'string', map: '1' },
-      { name: 'FirstName', type: 'string', map: '2' },
-      { name: 'MiddleName', type: 'string', map: '3' },
-    ]
-      //id? : number;
-      //LastName? : string;
-      //FirstName? : string;
-      //MiddleName? : string;
-      City? : string;
-      Phone? : string;
-      Address? : string;
-      State? : string;
-      Fax? : string;
-      ReferenceId? : string;
-      Birth? : string;
-      WorkingSchemeType? : number;
-      Occupation? : string;
-      Unit3? : string;
-      Unit2? : string;
-      Unit1? : string;
-      Email? : string;
-      Other? : string;
-      MobilePhone? : string;
-      OrganizationalUnitId? : number;
-      AdditionalField1? : string;
-      AdditionalField2? : string;
-      AdditionalField3? : string;
-      AdditionalField4? : string;
-      AdditionalField5? : string;
-      AdditionalField6? : string;
-      AdditionalField7? : string;
-      AdditionalField8? : string;
-      AdditionalField9? : string;
-      AdditionalField10? : string;
-      Active? : boolean;
-      InternalField1? : object;
-      InternalField2? : object;
-      InternalField3? : object;
-      InternalField4? : object;
-      InternalField5? : object;
-      CurrentWorkingSchemeId? : number;
-
-      datatype: 'array'
-  };
-
-  dataAdapter: any = new jqx.dataAdapter(this.source);
-
-  columns: any[] =
-  [
-      { text: 'Company Name', datafield: 'CompanyName', width: 200 },
-      { text: 'Contact Name', datafield: 'ContactName', width: 150 },
-      { text: 'Contact Title', datafield: 'Title', width: 100 },
-      { text: 'Address', datafield: 'Address', width: 100 },
-      { text: 'City', datafield: 'City', width: 100 },
-      { text: 'Country', datafield: 'Country' }
-  ];
-
-
-
-/*
-  source: any =
-  {
-      datatype: 'xml',
-      datafields: [
-          { name: 'ProductName', type: 'string' },
-          { name: 'QuantityPerUnit', type: 'int' },
-          { name: 'UnitPrice', type: 'float' },
-          { name: 'UnitsInStock', type: 'float' },
-          { name: 'Discontinued', type: 'bool' }
-      ],
-      root: 'Products',
-      record: 'Product',
-      id: 'ProductID',
-      url: '../sampledata/products.xml'
-  };
-
-  dataAdapter: any = new jqx.dataAdapter(this.source);
-
-  cellsrenderer = (row: number, columnfield: string, value: string | number, defaulthtml: string, columnproperties: any, rowdata: any): string => {
-      if (value < 20) {
-          return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
-      }
-      else {
-          return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
-      }
-  };
-
-  columns: any[] =
-  [
-      { text: 'Product Name', columngroup: 'ProductDetails', datafield: 'ProductName', width: 250 },
-      { text: 'Quantity per Unit', columngroup: 'ProductDetails', datafield: 'QuantityPerUnit', cellsalign: 'right', align: 'right' },
-      { text: 'Unit Price', columngroup: 'ProductDetails', datafield: 'UnitPrice', align: 'right', cellsalign: 'right', cellsformat: 'c2' },
-      { text: 'Units In Stock', datafield: 'UnitsInStock', cellsalign: 'right', cellsrenderer: this.cellsrenderer, width: 100 },
-      { text: 'Discontinued', columntype: 'checkbox', datafield: 'Discontinued', align: 'center' }
-  ];
-
-  columngroups: any[] =
-  [
-      { text: 'Product Details', align: 'center', name: 'ProductDetails' }
-  ];
-
-
-/*
+  
   source: any =
     {
-      datatype: 'xml',
-      datafields: [
-        { name: 'ProductName', type: 'string' },
-        { name: 'QuantityPerUnit', type: 'int' },
-        { name: 'UnitPrice', type: 'float' },
-        { name: 'UnitsInStock', type: 'float' },
-        { name: 'Discontinued', type: 'bool' }
-      ],
-      root: 'Products',
-      record: 'Product',
-      id: 'ProductID',
-      url: './../../../sampledata/products.xml'
-    };
-  getWidth(): any {
-    if (document.body.offsetWidth < 850) {
-      return '90%';
-    }
+      localdata: [],
+      datafields:
+      
+        [
+          { name: 'id', type: 'number', map: '0' },
+          { name: 'LastName', type: 'string', map: '1' },
+          { name: 'FirstName', type: 'string', map: '2' },
+          { name: 'MiddleName', type: 'string', map: '3' },
+          { name: 'City', type: 'string', map: '4' },
+          { name: 'Phone', type: 'string', map: '5' },
+          { name: 'Address', type: 'string', map: '6' },
+          { name: 'State', type: 'string', map: '7' },
+          { name: 'Fax', type: 'string', map: '8' },
+          { name: 'ReferenceId', type: 'string', map: '9' },
+          { name: 'Birth', type: 'string', map: '10' },
+          { name: 'WorkingSchemeType', type: 'number', map: '11' },
+          { name: 'Occupation', type: 'string', map: '12' },
+          { name: 'Unit3', type: 'string', map: '13' },
+          { name: 'Unit2', type: 'string', map: '14' },
+          { name: 'Unit1', type: 'string', map: '15' },
+          { name: 'Email', type: 'string', map: '16' },
+          { name: 'Other', type: 'string', map: '17' },
+          { name: 'MobilePhone', type: 'string', map: '18' },
+          { name: 'OrganizationalUnitId', type: 'number', map: '19' },
+          { name: 'AdditionalField1', type: 'string', map: '20' },
+          { name: 'AdditionalField2', type: 'string', map: '20' },
+          { name: 'AdditionalField3', type: 'string', map: '20' },
+          { name: 'AdditionalField4', type: 'string', map: '20' },
+          { name: 'AdditionalField5', type: 'string', map: '20' },
+          { name: 'AdditionalField6', type: 'string', map: '20' },
+          { name: 'AdditionalField7', type: 'string', map: '20' },
+          { name: 'AdditionalField8', type: 'string', map: '20' },
+          { name: 'AdditionalField9', type: 'string', map: '20' },
+          { name: 'AdditionalField10', type: 'string', map: '20' },
+          { name: 'Active', type: 'boolean', map: '21' },
+          { name: 'InternalField1', type: 'object', map: '22' },
+          { name: 'InternalField2', type: 'object', map: '23' },
+          { name: 'InternalField3', type: 'object', map: '24' },
+          { name: 'InternalField4', type: 'object', map: '25' },
+          { name: 'InternalField5', type: 'boolean', map: '26' },
+          { name: 'CurrentWorkingSchemeId', type: 'number', map: '27' }
+        ],
+     
 
-    return 850;
-  }
+      datatype: 'array'
+    };
+
   dataAdapter: any = new jqx.dataAdapter(this.source);
-  cellsrenderer = (row: number, columnfield: string, value: string | number, defaulthtml: string, columnproperties: any, rowdata: any): string => {
-    if (value < 20) {
-      return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
-    }
-    else {
-      return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
-    }
-  };
+
   columns: any[] =
     [
-      { text: 'Product Name', columngroup: 'ProductDetails', datafield: 'ProductName', width: 250 },
-      { text: 'Quantity per Unit', columngroup: 'ProductDetails', datafield: 'QuantityPerUnit', cellsalign: 'right', align: 'right' },
-      { text: 'Unit Price', columngroup: 'ProductDetails', datafield: 'UnitPrice', align: 'right', cellsalign: 'right', cellsformat: 'c2' },
-      { text: 'Units In Stock', datafield: 'UnitsInStock', cellsalign: 'right', cellsrenderer: this.cellsrenderer, width: 100 },
-      { text: 'Discontinued', columntype: 'checkbox', datafield: 'Discontinued', align: 'center' }
+      { text: 'ID', datafield: 'id', width: 200 },
+      { text: 'Ime', datafield: 'FirstName', width: 150 },
+      { text: 'Priimek', datafield: 'LastName', width: 100 },
+      { text: 'Email', datafield: 'Email', width: 100 },
+      { text: 'Matična', datafield: 'AdditionalField1', width: 100 },
+      { text: 'Active', datafield: 'Active' }
     ];
-  columngroups: any[] =
-    [
-      { text: 'Product Details', align: 'center', name: 'ProductDetails' }
-    ];
-*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
     //this.onGetSession();
-    //this.onGetEmployee();
+    this.onGetEmployee();
     //this.testLocalStorage();
     //this.ReLogin();
     // Globalconstants.ReLogin(() => this.onGetSession());
-    this.onGetEmployee();
+    //this.source.localdata = this.onGetEmployee();
+    //this.dataAdapter = new jqx.dataAdapter(this.source);
   }
 
   onGetSession() {
@@ -234,7 +107,7 @@ export class AppComponent implements OnInit {
   }
 
   //onGetEmployee(): void { // IEmployee[] {
-    onGetEmployee(): Employee[] {
+  onGetEmployee(): Employee[] {
 
     //let source:any = [];
 
@@ -244,8 +117,16 @@ export class AppComponent implements OnInit {
     this.employeeService.getEmployees().subscribe(
       {
         next: (employeeList) => {
-          console.table(employeeList);
+          //console.table(employeeList);
           result = employeeList;
+          this.source.localdata = employeeList;
+          console.log("----------------------------");
+          //console.log(this.source.localdata);
+          console.count(this.source.localdata);
+          
+          console.log("----------------------------");
+
+          this.dataAdapter = new jqx.dataAdapter(this.source);
         },
         error: (e) => console.error('e'),
         complete: () => console.info('complete'),

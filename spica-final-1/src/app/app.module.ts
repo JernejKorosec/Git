@@ -10,6 +10,12 @@ import { UsersComponent } from './views/users/users.component';
 import { PresenceComponent } from './views/presence/presence.component';
 import { FormsModule }    from '@angular/forms';
 import { jqxGridModule } from 'jqwidgets-ng/jqxgrid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { MatSelect } from '@angular/material/select'
+
 
 @NgModule({
   declarations: [
@@ -22,7 +28,10 @@ import { jqxGridModule } from 'jqwidgets-ng/jqxgrid';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    jqxGridModule 
+    jqxGridModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -291,6 +291,14 @@
       visibility: hidden;
     }
   }
+
+
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    border-radius: 5px;
+  }
+
 </style>
 
 <!-- Toolbar -->
@@ -353,6 +361,35 @@
   <br/>
 
   <jqxGrid #myGrid [width]="1050" [source]="dataAdapter" [columns]="columns" [sortable]="true" [filterable]="true" [autoshowfiltericon]="true" [pageable]="true"> </jqxGrid>
+
+  <div class="example-container" style="background-color:#888; width:1050px;"  >
+
+  <p>
+    <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
+      <mat-label>Vnesite Ime</mat-label>
+      <input matInput #input maxlength="10" placeholder="Npr. Jernej valda">
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
+      <mat-label>Vnesite Priimek</mat-label>
+      <input matInput #input maxlength="10" placeholder="Npr. Korošec">
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 50 znakov" appearance="fill">
+      <mat-label>Vnesite Email</mat-label>
+      <input matInput #input maxlength="50" placeholder="Npr. Jernej.Korosec@lejtojeiziResIzi.si">
+      <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
+      <mat-label>Vnesite Matično</mat-label>
+      <input matInput #input maxlength="10" placeholder="Npr. SI66609990">
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+  </p>
+  </div>
 
 </div>
 

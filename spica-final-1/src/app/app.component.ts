@@ -154,13 +154,12 @@ export class AppComponent implements OnInit {
       {
         next: (employeeList) => {
           result = employeeList;
-          const sel: Object[] = employeeList.map(employee =>  ({Id: employee.Id, Firstname: employee.FirstName })); // no error
-          const newList = employeeList.map(employee => [employee.Id, employee.FirstName, employee.LastName, employee.Email, employee.AdditionalField1, employee.Active]);
-          console.log(`sel is typeof: ${typeof sel}, and value is:`,sel);
-          console.log(`newList is typeof: ${typeof newList}, and value is:`,newList);
-          const usersJson: any[] = Array.of(sel);
-          console.log("Jiiiiiihaaaaaaa:",usersJson);
+          //const sel: Object[] = employeeList.map(employee =>  ({Id: employee.Id, Firstname: employee.FirstName })); // no error
+
+          
+          
           //debugger
+          /*
           let source1 =
           {
               localdata: [
@@ -169,52 +168,16 @@ export class AppComponent implements OnInit {
                   [3,'Antonio Moreno Taquera']
               ],
           };
-          /*
-          let a1 = source1;
-          let a2 = source1.localdata;
-          let a3 = source1.localdata[0];
-          let a4 = source1.localdata[0][0];
-          console.log(`Type of source1 ${a1}:`, typeof a1);
-          console.log(`Type of source1.localdata ${a2}:`, typeof a2);
-          console.log(`Type of source1.localdata[0] ${a3}:`, typeof a3);
-          console.log(`Type of source1.localdata[0][0] ${a4}:`, typeof a4);
-          console.log("TYPEOF---> :", typeof source1.localdata[0][0]);
-          */
-          //this.source.localdata = result;
+        
           let bbb = source1.localdata;
+          
           console.log(`bbb is typeof: ${typeof bbb}, and value is:`,bbb);
-          //this.source.localdata = bbb;
-          this.source.localdata = newList;
-          //this.source.localdata = shortAtributeemployeeList;
-          //let watch1 = result;
-          //let watch2 = this.somefunction(employeeList);
-          //debugger;
-          //console.log(Object.getOwnPropertyNames(result[0]));
-          //let defs = Object.getOwnPropertyNames(result[0]);
-           //this.columns
-          //console.log(this.columns.keys.name);
-         //console.log("---   {",result[0].Email,"}   ---");
-          //Object.getOwnPropertyNames(result[0])
-          //let neki = result[0].Email;
-          //console.log("---   {",neki,"}   ---");    // email
-          //  this.source.localdata = neki;
-          //this.dataAdapter = employeeList;
-          //console.log("----------------------------");
-          /*
-          //console.log(this.source.localdata);
-          let testsource1 = this.source.localdata;
-          let object1 = JSON.stringify(testsource1, null, 4);
-          let object1String = testsource1[0];
-          let object2String = JSON.stringify(object1String, null, 4);
-          //console.count(Object.keys(this.source.localdata));
-          console.log(object1String);
-          console.log(object2String);
           */
-          //console.log(this.source.datafield);
-          //console.log("----------------------------");
-          //this.source.localdata = object1;
+          //this.source.localdata = bbb;
+          this.source.localdata = employeeList.map(employee => [employee.Id, employee.FirstName, employee.LastName, employee.Email, employee.AdditionalField1, employee.Active]);
+          
           this.dataAdapter = new jqx.dataAdapter(this.source);
-          //this.dataAdapter = new jqx.dataAdapter(object2String);
+          
         },
         error: (e) => console.error('e'),
         complete: () => console.info('complete'),

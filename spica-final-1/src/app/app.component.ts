@@ -4,7 +4,7 @@ import { EmployeeService } from './services/employee.service';
 import { Globalconstants } from './common/global/globalconstants';
 import { jqxGridComponent } from 'jqwidgets-ng/jqxgrid';
 import { Employee } from './classes/employee';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 
 @Component({
@@ -145,12 +145,25 @@ export class AppComponent implements OnInit {
     this.employeeService.getEmployees().subscribe(
       {
         next: (employeeList) => {
-
           //console.table(employeeList[0]);
           result = employeeList;
           //this.source.localdata = result;
+          //let a = this.somefunction(employeeList);
+          //console.log(`Type of source1 ${employeeList}:`, typeof employeeList);
           
-          let a = this.somefunction(employeeList);
+          const sel: Object[] = employeeList.map(employee =>  ({Id: employee.Id, Firstname: employee.FirstName })); // no error
+          const newList = employeeList.map(employee => [employee.Id, employee.FirstName]);
+
+          console.log(`sel is typeof: ${typeof sel}, and value is:`,sel);
+          console.log(`newList is typeof: ${typeof newList}, and value is:`,newList);
+          const usersJson: any[] = Array.of(sel);
+          console.log("Jiiiiiihaaaaaaa:",usersJson);
+
+          //var employeeEntries: [string, number][] = [];
+          //var shortAtributeemployeeList2: [string, number][] = employeeList.map( employee =>  ({Id: employee.Id, Firstname: employee.FirstName })); // no error
+          
+
+
           //debugger
           //this.source.localdata = a;
           let source1 =
@@ -161,6 +174,7 @@ export class AppComponent implements OnInit {
                   [3,'Antonio Moreno Taquera']
               ],
           };
+          /*
           let a1 = source1;
           let a2 = source1.localdata;
           let a3 = source1.localdata[0];
@@ -172,9 +186,17 @@ export class AppComponent implements OnInit {
           console.log(`Type of source1.localdata[0][0] ${a4}:`, typeof a4);
           
           console.log("TYPEOF---> :", typeof source1.localdata[0][0]);
+          */
 
           //this.source.localdata = result;
-          this.source.localdata = source1.localdata;
+          let bbb = source1.localdata;
+          console.log(`bbb is typeof: ${typeof bbb}, and value is:`,bbb);
+          //this.source.localdata = bbb;
+          this.source.localdata = newList;
+
+
+          //this.source.localdata = shortAtributeemployeeList;
+          
 
 
 

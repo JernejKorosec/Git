@@ -345,15 +345,23 @@
     <a routerLink="/users">Users</a> | 
     <a routerLink="/presence">Presence</a>
   </nav>
--->
+
 <jqxGrid
-    [width]="getWidth()" [source]="dataAdapter" [columns]="columns"
+    [width]="getWidth()" [source]="source" [columns]="columns"
     [pageable]="true" [autoheight]="true" [sortable]="true" 
     [altrows]="true"  [enabletooltips]="true"  [editable]="true" 
     [selectionmode]="'multiplecellsadvanced'" [columngroups]="columngroups">
 </jqxGrid>
 
-
+<jqxGrid [width]="850" [source]="dataAdapter" [columns]="columns"
+         [pageable]="true" [autoheight]="true" [sortable]="true"
+         [altrows]="true" [enabletooltips]="true" [editable]="true"
+         [selectionmode]="'multiplecellsadvanced'" [columngroups]="columngroups">
+</jqxGrid>
+-->
+<jqxGrid #myGrid 
+            [width]="850" [source]="dataAdapter" [columns]="columns">
+        </jqxGrid>
 
  </div>
 

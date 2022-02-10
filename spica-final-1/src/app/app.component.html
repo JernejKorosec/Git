@@ -380,10 +380,10 @@
     <p>
       <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
         <mat-label>Vnesite Ime</mat-label>
-        <input matInput #input_ime maxlength="10" placeholder="Npr. Jernej valda">
+        <input matInput #input_ime id="input_ime" name="input_ime" maxlength="10" placeholder="Npr. Jernej valda" (change)="onInputImeChanged()">
         <mat-hint align="end">{{input_ime.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
-
+      
       <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
         <mat-label>Vnesite Priimek</mat-label>
         <input matInput #input_priimek maxlength="10" placeholder="Npr. Korošec">

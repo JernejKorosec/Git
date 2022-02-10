@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { HttpClient, HttpClientModule, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { RequestCredential } from '../classes/requestcredential';
@@ -10,9 +10,9 @@ import { Employee } from '../classes/employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-
+  
   constructor(private http: HttpClient) { }
-
+  
   /*
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);

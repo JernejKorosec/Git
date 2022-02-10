@@ -1,39 +1,8 @@
 {
-    "/Session*": {
+    "*": {
         "target": "http://rdweb.spica.com:5213/timeapi",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
     },
-    "/Employee*": {
-        "target": "http://rdweb.spica.com:5213/timeapi",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    },
-    "/Presence*": {
-        "target": "http://rdweb.spica.com:5213/timeapi",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    },
-    "/user": {
-        "target": "http://localhost:4200/user",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    },
-    "/prisotnost": {
-        "target": "http://localhost:4200",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    },
-    "/settings": {
-        "target": "http://localhost:4200",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    }
-
 }

@@ -409,7 +409,7 @@
         <mat-hint align="end">{{input_maticna.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
     <p>
-      <button mat-stroked-button color="primary" #button_poslji>Dodaj novega zaposlenega</button>
+      <button mat-stroked-button color="primary" #button_poslji id="button_poslji" name="button_poslji" (click)="onAddNewEmployee()">Dodaj novega zaposlenega</button>
     </p>
   </div>
 

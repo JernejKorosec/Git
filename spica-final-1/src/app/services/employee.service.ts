@@ -47,4 +47,57 @@ export class EmployeeService {
     };
     return this.http.get<Employee[]>(url, httpOptions);
   }
+
+  addEmployee(ime:string,priimek:string,email:string,maticna:string): Observable<Employee> {
+    let url: string = Globalconstants.spiceApiEndpoint_employee; 
+    let FullSessionToken = Globalconstants.Auth_GetSession_Token + ":" + localStorage.getItem('SpicaApi_Session_Token');
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': FullSessionToken
+      })
+    };
+
+    const body ={
+      
+        "LastName": `${ime}`,
+        "FirstName": `${priimek}`,
+        "MiddleName": "empty",
+        "City": "empty",
+        "Phone": "00000",
+        "Address": "empty",
+        "State": "empty",
+        "Fax": "00000",
+        "ReferenceId": "00000",
+        "Birth": "1.1.2000 0:00:00",
+        "WorkingSchemeType": 2,
+        "Occupation": "President",
+        "Unit3": "Unit3",
+        "Unit2": "Unit2",
+        "Unit1": "Unit1",
+        "Email": `${email}`,
+        "Other": "empty",
+        "MobilePhone": "00000",
+        "OrganizationalUnitId": 10000000,
+        "AdditionalField1": `${maticna}`,
+        "AdditionalField2": "Note 2",
+        "AdditionalField3": "Note 3",
+        "AdditionalField4": "Note 4",
+        "AdditionalField5": "Note 5",
+        "AdditionalField6": "Note 6",
+        "AdditionalField7": "Note 7",
+        "AdditionalField8": "Note 8",
+        "AdditionalField9": "Note 9",
+        "AdditionalField10": "Note 10",
+        "Active": true,
+        "CurrentWorkingSchemeId": null
+        
+    };
+
+    return this.http.put<Employee>(url, body, httpOptions);
+  }
+
+
+
 }

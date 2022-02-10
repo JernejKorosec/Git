@@ -35,6 +35,21 @@ export class AppComponent implements OnInit {
     };
   }
 
+  onAddNewEmployee() {
+    //this.onAddEmployee();
+    if (!(typeof this.inputIme.nativeElement.value === 'undefined' ||
+      typeof this.inputPriimek.nativeElement.value === 'undefined' ||
+      typeof this.inputEmail.nativeElement.value === 'undefined' ||
+      typeof this.inputMaticna.nativeElement.value === 'undefined')) {
+
+        let _ime = this.inputIme.nativeElement.value;
+        let _priimek = this.inputPriimek.nativeElement.value;
+        let _email = this.inputEmail.nativeElement.value;
+        let _maticna = this.inputMaticna.nativeElement.value;
+      this.onAddEmployee(_ime,_priimek,_email,_maticna);
+    };
+  }
+
 
   myusername: string = "";
   title = 'Spica TimeAPI';
@@ -109,10 +124,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     //this.onGetSession();
-
     this.onGetEmployee();
-
-
     //console.log(t);
     //this.testLocalStorage();
     //this.ReLogin();
@@ -152,4 +164,21 @@ export class AppComponent implements OnInit {
     )
     return result;
   }
+
+  onAddEmployee(ime: string, priimek: string, email: string, maticna: string): Employee {
+    Globalconstants.ReLogin(() => this.onGetSession());
+    let result: Employee = new Employee();
+    this.employeeService.addEmployee(ime, priimek, email, maticna).subscribe(
+      {
+        next: (employee) => {
+          employee = result;
+          this.onGetEmployee();
+        },
+        error: (e) => console.error('e'),
+        complete: () => console.info('complete'),
+      }
+    )
+    return result;
+  }
+
 }

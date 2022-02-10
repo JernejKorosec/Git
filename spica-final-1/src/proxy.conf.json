@@ -23,14 +23,14 @@
         "changeOrigin": true,
         "logLevel": "debug"
     },
-    "/presence": {
-        "target": "http://localhost:4200/presence",
+    "/prisotnost": {
+        "target": "http://localhost:4200",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
     },
     "/settings": {
-        "target": "http://localhost:4200/settings",
+        "target": "http://localhost:4200",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"

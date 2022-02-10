@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'users', component: UsersComponent },
   //{ path: 'users/:id', component: HeroDetailComponent },
-  { path: 'presence', component: PresenceComponent }
+  { path: 'prisotnost', component: PresenceComponent }
   
 ];
 @NgModule({

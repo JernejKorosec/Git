@@ -359,7 +359,14 @@
       </g>
     </svg>
 
-    <span>{{ title }} app is running!</span>
+    <span>{{ title }} app is running!
+
+    <nav>
+      <a style="color:brown;" routerLink="/settings">Settings</a> | 
+      <a style="color:brown;" routerLink="/users">Users</a> | 
+      <a style="color:brown;" routerLink="/prisotnost">Presence</a>
+    </nav>
+  </span>
 
     <svg id="rocket-smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632"
       viewBox="0 0 516.119 1083.632">
@@ -407,5 +414,9 @@
   </div>
 
 </div>
+
+
+
+
 
 <router-outlet></router-outlet>

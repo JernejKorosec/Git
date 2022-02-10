@@ -1,6 +1,6 @@
 {
-    "*": {
-        "target": "http://rdweb.spica.com:5213/timeapi",
+    "/timeapi/*": {
+        "target": "http://rdweb.spica.com:5213",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"

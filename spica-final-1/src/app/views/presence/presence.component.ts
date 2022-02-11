@@ -16,7 +16,9 @@ export class PresenceComponent implements OnInit {
   columnsPresence: any;
   sourcePresence: any;
 
-  onPresenceRefresh() { }
+  onPresenceRefresh() {
+    this.onGetEmployeesPresent();
+   }
 
   constructor(private sc: SharedComponent, private employeeService: EmployeeService) {
     this.dataAdapterPresence = sc.dataAdapterPresence;
@@ -24,7 +26,8 @@ export class PresenceComponent implements OnInit {
     this.sourcePresence = sc.sourcepresence;
   }
   ngOnInit(): void {
-    this.onGetEmployee();
+    //this.onGetEmployee();
+    this.onGetEmployeesPresent();
 
   }
 
@@ -37,9 +40,6 @@ export class PresenceComponent implements OnInit {
         next: (employeeList) => {
           result = employeeList;
           this.sourcePresence.localdata = employeeList.map(employee => [employee.Id, employee.FirstName, employee.LastName, employee.Email, employee.AdditionalField1, employee.Active]);
-          console.log("====================================");
-          console.table(employeeList);
-          console.log("====================================");
           this.dataAdapterPresence = new jqx.dataAdapter(this.sourcePresence);
         },
         error: (e) => console.error('e'),
@@ -50,7 +50,7 @@ export class PresenceComponent implements OnInit {
   }
 
   onGetSession() {
-    console.log("onGetSession(): void");
+    //console.log("onGetSession(): void");
     this.employeeService.requestSessionToken().subscribe(
       {
         next: (response) => {
@@ -63,5 +63,25 @@ export class PresenceComponent implements OnInit {
       }
     );
   }
+
+
+  
+  onGetEmployeesPresent(): Employee[] {
+    Globalconstants.ReLogin(() => this.onGetSession());
+    let result: Employee[] = [];
+    this.employeeService.getEmployeesPresent().subscribe(
+      {
+        next: (employeeList) => {
+          result = employeeList;
+          this.sourcePresence.localdata = employeeList.map(employee => [employee.Id, employee.FirstName, employee.LastName, employee.Email, employee.AdditionalField1, employee.Active]);
+          this.dataAdapterPresence = new jqx.dataAdapter(this.sourcePresence);
+        },
+        error: (e) => console.error('e'),
+        complete: () => console.info('complete'),
+      }
+    )
+    return result;
+  }
+
 
 }

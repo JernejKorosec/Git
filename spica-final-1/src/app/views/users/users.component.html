@@ -1,0 +1,39 @@
+<div id="viewcontent1" name="viewcontent1">
+    <br />
+
+    <jqxGrid #myGrid [width]="830" [source]="dataAdapter" [columns]="columns" [sortable]="true" [filterable]="true"
+      [autoshowfiltericon]="true" [pageable]="true"> </jqxGrid>
+
+    <div class="example-container" style="background-color:#888;">
+
+      <p>
+        <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
+          <mat-label>Vnesite Ime</mat-label>
+          <input matInput #input_ime id="input_ime" name="input_ime" maxlength="10" placeholder="Npr. Jernej valda"
+            (change)="onInputImeChanged()">
+          <mat-hint align="end">{{input_ime.value?.length || 0}}/10</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
+          <mat-label>Vnesite Priimek</mat-label>
+          <input matInput #input_priimek maxlength="10" placeholder="Npr. Korošec">
+          <mat-hint align="end">{{input_priimek.value?.length || 0}}/10</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Max 50 znakov" appearance="fill">
+          <mat-label>Vnesite Email</mat-label>
+          <input matInput #input_email maxlength="50" placeholder="Npr. Jernej.Korosec@lejtojeiziResIzi.si">
+          <mat-hint align="end">{{input_email.value?.length || 0}}/50</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Max 10 znakov" appearance="fill">
+          <mat-label>Vnesite Matično</mat-label>
+          <input matInput #input_maticna maxlength="10" placeholder="Npr. SI66609990">
+          <mat-hint align="end">{{input_maticna.value?.length || 0}}/10</mat-hint>
+        </mat-form-field>
+      <p>
+        <button mat-stroked-button color="primary" #button_poslji id="button_poslji" name="button_poslji"
+          (click)="onAddNewEmployee()">Dodaj novega zaposlenega</button>
+      </p>
+    </div>
+  </div>

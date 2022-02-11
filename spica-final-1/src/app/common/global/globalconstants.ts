@@ -6,7 +6,8 @@ export class Globalconstants {
     public static spiceApiEndpoint_session: string = this.spiceApiEndpoint_timeapi + "/Session/GetSession";
     public static spiceApiEndpoint_employee: string = this.spiceApiEndpoint_timeapi + "/Employee";
     public static spiceApiEndpoint_presence: string = this.spiceApiEndpoint_timeapi + "/Presence";
-    public static Auth_GetSession_Token: string = "SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204";
+    //public static Auth_GetSession_Token: string = "SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204";
+    public static Auth_GetSession_Token: string = "SpicaToken";
     public static Auth_InSession_Token?: string = "";
 
 

@@ -1,1 +1,7 @@
-<p>settings works!</p>
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Your API GUID</mat-label>
+      <input matInput #input_guid id="input_input_guid" name="input_input_guid" maxlength="10" placeholder="GUID" value="{{APIGUIDBigTime}}" (change)="onGuidChanged()" >
+    </mat-form-field>
+</form>
+

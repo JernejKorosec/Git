@@ -48,6 +48,19 @@ export class EmployeeService {
     return this.http.get<Employee[]>(url, httpOptions);
   }
 
+  getEmployeesPresent(): Observable<Employee[]> {
+    let url: string = Globalconstants.spiceApiEndpoint_employee; 
+    let FullSessionToken = Globalconstants.Auth_GetSession_Token + ":" + localStorage.getItem('SpicaApi_Session_Token');
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': FullSessionToken
+      })
+    };
+    return this.http.get<Employee[]>(url, httpOptions);
+  }
+
   addEmployee(ime:string,priimek:string,email:string,maticna:string): Observable<Employee> {
     let url: string = Globalconstants.spiceApiEndpoint_employee; 
     let FullSessionToken = Globalconstants.Auth_GetSession_Token + ":" + localStorage.getItem('SpicaApi_Session_Token');
@@ -60,7 +73,6 @@ export class EmployeeService {
     };
 
     const body ={
-      
         "LastName": `${ime}`,
         "FirstName": `${priimek}`,
         "MiddleName": "empty",
@@ -92,9 +104,7 @@ export class EmployeeService {
         "AdditionalField10": "Note 10",
         "Active": true,
         "CurrentWorkingSchemeId": null
-        
     };
-
     return this.http.put<Employee>(url, body, httpOptions);
   }
 

@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { MatSelect } from '@angular/material/select'
 import {MatButtonModule} from '@angular/material/button';
+import { SharedComponent } from './common/global/shared/shared.component';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [SharedComponent],
   bootstrap: [AppComponent],
   entryComponents: [ AppComponent ]
 })

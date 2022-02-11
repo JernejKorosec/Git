@@ -9,6 +9,7 @@ export class Globalconstants {
     public static Auth_GetSession_Token: string = "SpicaToken 87F262C4-7FA6-46D3-880D-2F7E15B4F204";
     public static Auth_InSession_Token?: string = "";
 
+
     /// ==============================================================================
     /// ====    RECREATE SESSION IF 19 minutes passed   ==============================
     /// ==============================================================================
@@ -25,7 +26,7 @@ export class Globalconstants {
         if (localStorage.getItem("SpicaApi_Session_Timestamp") === null || localStorage.getItem("SpicaApi_Session_Token") === null) {
             console.log("if");
             reEngageSessionCheck();
-            
+
         }
         else {
             const storedTimeStr = (localStorage.getItem('SpicaApi_Session_Timestamp') + "").toString();
@@ -33,19 +34,19 @@ export class Globalconstants {
             var storedTime = new Date(storedTimeStr2);
             var new1 = new Date();
             var sessionTimeoutOccured = Globalconstants.has19MinsPassed(storedTime, new1);
-            console.log("\n\r StoredTime:", storedTime, "\n\r NewTime:   ", 
-            new1, "\n\r 19minpassed: ", sessionTimeoutOccured,
-            "\n\r Token:", localStorage.getItem("SpicaApi_Session_Token")
+            console.log("\n\r StoredTime:", storedTime, "\n\r NewTime:   ",
+                new1, "\n\r 19minpassed: ", sessionTimeoutOccured,
+                "\n\r Token:", localStorage.getItem("SpicaApi_Session_Token")
             );
-            
+
             if (sessionTimeoutOccured) {
                 reEngageSessionCheck();
                 console.log("reEngageSessionCheck() called", true);
-            } else if(localStorage.getItem("SpicaApi_Session_Token") === null){
+            } else if (localStorage.getItem("SpicaApi_Session_Token") === null) {
                 reEngageSessionCheck();
                 console.log("reEngageSessionCheck() called, no token found", true);
             }
-            else{
+            else {
                 console.log("reEngageSessionCheck() called", false);
             }
         }

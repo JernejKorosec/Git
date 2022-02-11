@@ -1,1 +1,18 @@
-<p>presence works!</p>
+
+
+<div id="viewcontent1" name="viewcontent1">
+    <br />
+
+    <jqxGrid #myGrid [width]="830" [source]="dataAdapterPresence" [columns]="columnsPresence" [sortable]="true"
+        [filterable]="true" [autoshowfiltericon]="true" [pageable]="true">
+    </jqxGrid>
+
+    <div class="example-container" style="background-color:#888;">
+
+        <p>
+            <button mat-stroked-button color="primary" #button_refresh_presence id="button_refresh_presence"
+                name="button_refresh_presence" (click)="onPresenceRefresh()">
+                Dodaj novega zaposlenega</button>
+        </p>
+    </div>
+</div>

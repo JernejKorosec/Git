@@ -18,6 +18,7 @@ cd mysql-test
 npm init -y
 npm install mysql
 npm install --save-dev nodemon
+etc...
 
 ```
 
@@ -25,7 +26,7 @@ npm install --save-dev nodemon
 On Linux
 ```bash
 ./node_modules/.bin/nodemon app.js
-```
+``` 
 On Windows (cmd)
 ```cmd
 \node_modules\.bin\nodemon app.js

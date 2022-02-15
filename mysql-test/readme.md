@@ -29,5 +29,5 @@ On Linux
 ``` 
 On Windows (cmd)
 ```cmd
-\node_modules\.bin\nodemon app.js
+node_modules\.bin\nodemon app.js
 ```

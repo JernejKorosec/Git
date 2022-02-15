@@ -1,0 +1,8 @@
+The requested module  does not provide an export named 
+
+"type": "module"
+
+
+SyntaxError: The requested module './Classes/mycrud.js' does not provide an export named 'default'
+
+SyntaxError: The requested module does not provide an export named 'default'

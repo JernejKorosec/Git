@@ -1,22 +1,57 @@
 
-const mysql = require('mysql');
+//import {myExport} from '/modules/my-module.js';
+//import {Author} from './Classes/mycrud.js';
+// import Author from './Classes/mycrud.js';
 
-const connection = mysql.createConnection({
+var authors = require("./Classes/person");
+
+
+
+// ========================================================================
+const mysql = require('mysql');
+// ========================================================================
+const con = mysql.createConnection({
   host: 'localhost',
   user: 'user',
   password: 'password',
   database: 'sitepoint'
 });
-
-connection.connect((err) => {
+// ======================================================================== 
+con.connect((err) => {
   if (err) throw err;
   console.log('Connected!!');
 });
-
-
-connection.query('SELECT * FROM authors', (err,rows) => {
+// ========================================================================
+con.query('SELECT * FROM authors', (err,rows) => {
   if(err) throw err;
 
   console.log('Data received from Db:');
   console.log(rows);
+  rows.forEach( (row) => {
+    console.log(`${row.name} lives in ${row.city}`);
+  });
+
 });
+// ========================================================================
+
+
+/*
+var author = new Author("test","Joe");
+
+con.query('INSERT INTO authors SET ?', author, (err, res) => {
+  if(err) throw err;
+
+  console.log('Last insert ID:', res.insertId);
+});
+*/
+// ========================================================================
+//const author = { name: 'Craig Buckler', city: 'Exmouth' };
+// ========================================================================
+/*
+con.query('INSERT INTO authors SET ?', author, (err, res) => {
+  if(err) throw err;
+
+  console.log('Last insert ID:', res.insertId);
+});
+*/
+// ========================================================================

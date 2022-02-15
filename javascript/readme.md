@@ -19,13 +19,6 @@ npm install --save-dev nodemon
 etc...
 
 ```
-## Running application
-node_modules\.bin\nodemon test.js
-
-
-
-
-
 ## How to run the app
 On Linux
 ```bash
@@ -33,5 +26,5 @@ On Linux
 ``` 
 On Windows (cmd)
 ```cmd
-\node_modules\.bin\nodemon app.js
+node_modules\.bin\nodemon app.js
 ```

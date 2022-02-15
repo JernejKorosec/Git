@@ -22,4 +22,11 @@ npm install --save-dev nodemon
 ```
 
 ## How to run the app
+On Linux
+```bash
 ./node_modules/.bin/nodemon app.js
+```
+On Windows (cmd)
+```cmd
+\node_modules\.bin\nodemon app.js
+```
